@@ -84,8 +84,30 @@ print(s11.isdisjoint(s12))  # 结果为：　False，s11和s12元素存在交集
 print(s12.isdisjoint(s13))  # 结果为：　False，s12和s13元素存在交集e
 print(s13.isdisjoint(s11))  # 结果为：　True，s13和s11元素没有交集
 
+# .issubset 测试本集合中的元素是否都在另一个集合中
+print("\n调用.issubset测试元素是否都在另一个集合中")
+s14 = {'a','b','c'}
+s15 = {'a','b','c','d','e'}
+print(s14.issubset(s15))
+print(s15.issubset(s14))
+# .issupset 测试另一个集合中的元素是否都在本集合中
+print("\n调用.issupset测试另一个集合中的元素是否都在本集合中")
+print(s14.issuperset(s15))
+print(s15.issuperset(s14))
 
+# .pop 移除并返回集合中的任意一个元素，如果集合为空则报错
+print("\n调用.pop移除并返回集合中的任意一个元素")
+s16 = {'1','2','a','b','tom','jenny'}
+p = s16.pop()
+print(s16)
+print(p)
+print(s16)
 
+# .remove 移除集合中的一个元素
+print("\n调用.remove移除集合中的一个元素")
+s17 = {'1','2','a','b','tom','jenny'}
+s17.remove('tom')
+print(s17)
 
 
 
