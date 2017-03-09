@@ -50,21 +50,45 @@ print("\n")
 class Restaurant():
     '''一次模拟餐厅的尝试'''
     def __init__(self,restaurant_name,cuisine_type):
+        '''初始化餐厅的属性'''
         self.restaurant_name = restaurant_name
         self.cuisine_type = cuisine_type
+        self.number_served = 0
+        '''初始化就餐人数同时指定默认值'''
 
     def description_restaurant(self):
+        '''描述餐厅信息'''
         print("This restaurant's name is "+self.restaurant_name.title()+" annd cuisine type is "+self.cuisine_type.title())
 
     def open_restaurant(self):
+        '''餐厅在开门营业'''
         print(self.restaurant_name.title()+" now is openning !")
 
     def close_restaurant(self):
+        '''餐厅已打烊下班'''
         print(self.restaurant_name.title()+" now is closing !")
+
+    def read_number_served(self):
+        '''在餐厅就餐总人数'''
+        print("There are "+str(self.number_served)+" people eated here !")
+
+    def set_number_served(self,number):
+        '''修改餐厅就餐的总人数'''
+        self.number_served = number
+
+    def increment_number_served(self,number):
+        '''递增餐厅就餐的总人数'''
+        self.number_served += number
 
 go_home_eat = Restaurant('回家吃饭','川菜')
 go_home_eat.description_restaurant()
 go_home_eat.open_restaurant()
+go_home_eat.number_served = 234
+go_home_eat.read_number_served()
+go_home_eat.set_number_served(500)
+go_home_eat.read_number_served()
+go_home_eat.increment_number_served(130)
+go_home_eat.read_number_served()
 
 print("\n")
 
@@ -96,8 +120,10 @@ class User():
         self.last_name = last_name
         self.age = age
         self.sex = sex
+        self.login_attempts = 0
 
     def describe_user(self):
+        '''描述用户信息'''
         describe = self.first_name.title()+" "+self.last_name.title()+" "+" is "+str(self.age)+" years old "
         if self.sex == '男':
             print(describe+"and is a 男人 !")
@@ -105,20 +131,45 @@ class User():
             print(describe+"and is a 女人 !")
 
     def greet_user(self):
+        '''定制个性化的用户欢迎语'''
         if self.sex == '男':
             print("Welcome ! "+self.first_name.title()+"　先生！")
         else:
             print("Welcome ! "+self.first_name.title()+" 小姐 !")
 
-user = User('张','三','30','男')
-user.describe_user()
-user.greet_user()
+    def read_login_attempts(self):
+        '''描述用户登录次数'''
+        print(self.first_name.title()+" "+self.last_name.title()+" attempt login "+str(self.login_attempts)+" times !")
+
+    def increment_login_attemps(self,number):
+        '''递增用户登录次数'''
+        self.login_attempts += number
+
+    def set_login_attemps(self,number):
+        '''修改用户登录次数'''
+        self.login_attempts = number
+
+    def reset_login_attemps(self):
+        '''重置用户登录次数'''
+        self.login_attempts = 0
+
+zhang_san = User('张','三',30,'男')
+zhang_san.describe_user()
+zhang_san.greet_user()
+zhang_san.set_login_attemps(9)
+zhang_san.read_login_attempts()
 
 print("\n")
 
-user = User('李','思','20','女')
-user.describe_user()
-user.greet_user()
+li_si = User('李','思',20,'女')
+li_si.describe_user()
+li_si.greet_user()
+li_si.increment_login_attemps(1)
+li_si.increment_login_attemps(2)
+li_si.increment_login_attemps(5)
+li_si.read_login_attempts()
+li_si.reset_login_attemps()
+li_si.read_login_attempts()
 
 print("\n")
 
@@ -127,10 +178,23 @@ print("\n")
 # user.first_name = input("请输入first name:")
 # user.last_name = input("请输入last name:")
 # user.age = input("请输入年龄：")
-# user.sex = input("请输入性别(男/女)：")
+# user.sex = input("请输入性别(男/女)：")ｐ
 # user.describe_user()
 # user.greet_user()
 
+class Admin(User):
+    def __init__(self,first_name,last_name,age,sex):
+        super().__init__(first_name,last_name,age,sex)
+        self.privileges = ['can add post','can delete post','can ban user']
+
+    def show_privileges(self):
+        for i in self.privileges:
+            print(self.first_name.title()+" "+i+" !")
+
+admin = Admin('admin','',0,'男')
+admin.show_privileges()
+
+print("\n")
 
 class Car():
     '''描述汽车信息的类'''
